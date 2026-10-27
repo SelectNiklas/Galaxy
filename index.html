@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galaxy</title>
+  <meta name="description" content="Eine interaktive Partikel-Galaxie, gerendert in Echtzeit mit Three.js und WebGL.">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/",
+        "lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.19.2/dist/lil-gui.esm.min.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <pre id="stats" aria-hidden="true"></pre>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
