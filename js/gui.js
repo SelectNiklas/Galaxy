@@ -1,6 +1,6 @@
 import GUI from 'lil-gui';
 
-export function createGui(params, defaults, { onGalaxyChange, onSizeChange, onBloomChange, onResolutionChange, onStatsChange }) {
+export function createGui(params, defaults, { onGalaxyChange, onSizeChange, onBloomChange, onResolutionChange, onStatsChange, onReset }) {
   const gui = new GUI({ title: 'Effekt-Regler' });
 
   const shape = gui.addFolder('Form');
@@ -37,6 +37,7 @@ export function createGui(params, defaults, { onGalaxyChange, onSizeChange, onBl
       onBloomChange();
       onResolutionChange();
       onStatsChange();
+      onReset();
     },
   }, 'reset').name('Zurücksetzen');
 

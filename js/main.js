@@ -7,6 +7,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { Galaxy } from './galaxy.js';
 import { createGui } from './gui.js';
 import { createStats } from './stats.js';
+import { loadSettings, saveSettings, clearSettings } from './settings.js';
 
 const isMobile = window.matchMedia('(max-width: 600px)').matches;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -30,7 +31,7 @@ const defaults = {
   renderScale: Math.min(devicePixelRatio, 1.5),
   stats: true,
 };
-const params = { ...defaults };
+const params = loadSettings(defaults);
 
 // ---------- Renderer, scene, camera ----------
 
@@ -123,8 +124,13 @@ const gui = createGui(params, defaults, {
   },
   onResolutionChange: applyResolution,
   onStatsChange: () => stats.setVisible(params.stats),
+  onReset: clearSettings,
 });
 gui.close();
+stats.setVisible(params.stats);
+
+// Fires for every controller in every folder once a change is complete
+gui.onFinishChange(() => saveSettings(params));
 
 // ---------- Render loop ----------
 
