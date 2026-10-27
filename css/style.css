@@ -45,9 +45,97 @@ body::after {
   font: 11px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace;
   text-align: right;
   color: rgba(200, 196, 220, 0.4);
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
   user-select: none;
+}
+
+/* ---------- Effect switcher ---------- */
+
+/* Black overlay for the crossfade between effects */
+#fade {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+#fade.visible {
+  opacity: 1;
+}
+
+#effects {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  z-index: 3;
+  display: flex;
+  gap: 4px;
+  transform: translateX(-50%);
+}
+
+#effects button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(236, 232, 255, 0.35);
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+#effects svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#effects button:hover {
+  color: rgba(236, 232, 255, 0.7);
+}
+
+#effects button:focus-visible {
+  outline: 1px solid rgba(236, 232, 255, 0.4);
+}
+
+#effects button[aria-pressed="true"] {
+  color: rgba(236, 232, 255, 0.95);
+}
+
+/* Small dot under the active effect */
+#effects button::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+#effects button[aria-pressed="true"]::after {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  /* Stats sit above the switcher on narrow screens */
+  #stats {
+    bottom: 56px;
+  }
 }
 
 /* ---------- lil-gui theme ---------- */
@@ -161,6 +249,7 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #fade,
   .lil-gui.root,
   .lil-gui.root * {
     transition-duration: 1ms !important;

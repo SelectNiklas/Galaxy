@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Galaxy</title>
+  <title>Visuals</title>
   <meta name="description" content="Eine interaktive Partikel-Galaxie, gerendert in Echtzeit mit Three.js und WebGL.">
   <link rel="stylesheet" href="css/style.css">
 
@@ -20,6 +20,21 @@
 <body>
   <canvas id="webgl" aria-hidden="true"></canvas>
   <pre id="stats" aria-hidden="true"></pre>
+  <div id="fade" aria-hidden="true"></div>
+
+  <nav id="effects" aria-label="Effekt wählen">
+    <button type="button" data-effect="galaxy" aria-label="Galaxie" title="Galaxie">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3a9 9 0 0 1 9 9M12 21a9 9 0 0 1-9-9M12 7a5 5 0 0 1 5 5M12 17a5 5 0 0 1-5-5" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+      </svg>
+    </button>
+    <button type="button" data-effect="trees" aria-label="Bäume" title="Bäume">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 20V11M12 15l-4-4M12 13l4-4M8 11 6 8M8 11V7M16 9l2-3M16 9V5M5 20h14" />
+      </svg>
+    </button>
+  </nav>
 
   <script type="module" src="js/main.js"></script>
 </body>
